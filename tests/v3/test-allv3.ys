@@ -1,0 +1,62 @@
+# Final register values should be:
+# %eax:		0x00000006
+# %ecx:		0x00000001
+# %edx:		0x00000001
+# %ebx:		0x00000006
+# %esp:		0x000001f8
+# %ebp:		0x00000200
+# %edi:		0x0000000b
+
+ 	.pos 0
+irmovl $0, %edi
+init:	 irmovl Stack, %esp
+	 irmovl Stack, %ebp
+	 call test_block
+
+bad_block:	irmovl $1,%ecx
+
+test_block:	irmovl $3,%ecx
+
+addl %ecx, %edi
+
+irmovl Stack,%esp
+irmovl Stack,%ebp
+pushl %ebp
+irmovl $4,%eax
+pushl %eax
+popl %ebp
+
+addl %ebp, %edi
+
+irmovl Stack,%esp
+irmovl Stack,%ebp
+pushl %ebp
+irmovl $4,%eax
+pushl %eax
+
+addl %eax, %edi
+
+irmovl $6,%eax
+irmovl $15,%ecx
+rmmovl %eax,150(%ecx)
+mrmovl 150(%ecx),%edx
+rmmovl %edx,(%ecx)
+mrmovl (%ecx),%ebx
+
+	 call test_block2
+	 irmovl $1,%edx
+
+bad_block2:	irmovl $1,%ecx
+	halt
+
+test_block2:	pushl %ebp
+		rrmovl %esp,%ebp
+		irmovl $3,%ecx
+		rrmovl %ebp,%esp
+		popl %ebp
+		ret
+
+
+	.pos 0x200
+Stack:
+

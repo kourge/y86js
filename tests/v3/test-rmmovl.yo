@@ -1,0 +1,24 @@
+                      | # Y86 rmmovl unit test program
+                      | 
+                      | # Final values should be:
+                      | # %eax:	        0x00000005
+                      | # %ecx:		0x00000040
+                      | # %edx:		0x00000044
+                      | # 0x0010:	0x00000044
+                      | # 0x0014:	0x00000005
+                      | 
+  0x000:              |     .pos 0
+  0x000: 7040000000   |     jmp Start
+  0x040:              |     .pos 0x40
+  0x040:              | Start:
+  0x040: 30f140000000 |     irmovl A,%ecx
+  0x046: 30f244000000 |     irmovl B,%edx
+  0x04c: 30f005000000 |     irmovl $5,%eax
+  0x052: 401200000000 |     rmmovl %ecx,(%edx)
+  0x058: 400100000000 |     rmmovl %eax,(%ecx)
+  0x05e: 4001feffffff |     rmmovl %eax,-2(%ecx)
+  0x064: 00           |     halt
+  0x040:              |     .pos 0x40
+  0x040:              | A:
+  0x044:              |     .pos 0x44
+  0x044:              | B:

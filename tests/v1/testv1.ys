@@ -1,0 +1,20 @@
+# This is a test of the instructions for the y86v1 processor
+       .pos 0
+start: irmovl $1, %eax
+       irmovl $2, %ebx
+       irmovl $3, %ecx
+       irmovl $4, %edx
+       irmovl $5, %esp
+       irmovl $6, %ebp
+       irmovl $7, %esi
+       irmovl $8, %edi
+       addl   %edi, %edi  # 16
+       nop
+       subl   %esi, %ebp  # -1
+       andl   %esp, %edx  # 4
+       xorl   %ebx, %ecx
+       nop
+       xorl   %ecx, %ebx
+       xorl   %ebx, %ecx
+       halt
+

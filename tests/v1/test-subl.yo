@@ -1,0 +1,17 @@
+                      | # Y86 subl unit test program
+                      | # Note that the first register's value
+                      | # is subtracted from that in the second
+                      | # register.
+                      | 
+                      | # Final register values should be:
+                      | # %eax: 0x00000004
+                      | # %ecx: 0x0000000b
+                      | # %edx: 0xffffffff
+                      | # %ebx: 0x00000006
+                      | 
+  0x000: 30f00f000000 | irmovl $15,%eax
+  0x006: 30f10b000000 | irmovl $11,%ecx
+  0x00c: 6110         | subl %ecx,%eax
+  0x00e: 30f205000000 | irmovl $5,%edx
+  0x014: 30f306000000 | irmovl $6,%ebx
+  0x01a: 6132         | subl %ebx,%edx

@@ -1,0 +1,19 @@
+# Y86 jne unit test program
+# Final register values should be:
+# %ecx:	0x00000003
+# %edx:	0x00000005
+# %ebx:	0x0000000a
+
+Start:	 irmovl $3,%eax
+	 irmovl $3,%ecx
+	 subl %ecx,%eax
+	 je Jmp1
+	 irmovl $3,%eax
+	 irmovl $2,%ecx
+	 subl %eax,%ecx
+	 je Jmp2
+
+Jmp1:	 irmovl $5,%edx
+	 jmp Jmp2
+
+Jmp2:	 irmovl $10,%ebx

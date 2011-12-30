@@ -1,0 +1,22 @@
+                      | # Y86 mrmovl and rmmovl unit test program
+                      | # Final register values should be:
+                      | # %eax:		0x00000006
+                      | # %ecx:		0x00000100
+                      | # %edx:		0x00000006
+                      | # %ebx:		0x00000006
+                      | 
+                      | # Final memory state should be:
+                      | # 0x00fc:       0x00000600
+  0x000:              |     .pos 0
+  0x000: 7040000000   |     jmp Start
+  0x040:              |     .pos 0x40
+  0x040:              | Start:
+  0x040: 30f006000000 |     irmovl $6,%eax
+  0x046: 30f100010000 |     irmovl A,%ecx
+  0x04c: 4001fdffffff |     rmmovl %eax,-3(%ecx)
+  0x052: 5021fdffffff |     mrmovl -3(%ecx),%edx
+  0x058: 402100000000 |     rmmovl %edx,(%ecx)
+  0x05e: 503100000000 |     mrmovl (%ecx),%ebx
+  0x064: 00           |     halt
+  0x100:              |     .pos 0x100
+  0x100:              | A:

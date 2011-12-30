@@ -1,0 +1,20 @@
+                      | # This is a test of the instructions for the y86v1 processor
+  0x000:              |        .pos 0
+  0x000: 30f001000000 | start: irmovl $1, %eax
+  0x006: 30f302000000 |        irmovl $2, %ebx
+  0x00c: 30f103000000 |        irmovl $3, %ecx
+  0x012: 30f204000000 |        irmovl $4, %edx
+  0x018: 30f405000000 |        irmovl $5, %esp
+  0x01e: 30f506000000 |        irmovl $6, %ebp
+  0x024: 30f607000000 |        irmovl $7, %esi
+  0x02a: 30f708000000 |        irmovl $8, %edi
+  0x030: 6077         |        addl   %edi, %edi  # 16
+  0x032: 10           |        nop
+  0x033: 6165         |        subl   %esi, %ebp  # -1
+  0x035: 6242         |        andl   %esp, %edx  # 4
+  0x037: 6331         |        xorl   %ebx, %ecx
+  0x039: 10           |        nop
+  0x03a: 6313         |        xorl   %ecx, %ebx
+  0x03c: 6331         |        xorl   %ebx, %ecx
+  0x03e: 00           |        halt
+                      | 

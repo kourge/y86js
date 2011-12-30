@@ -1,0 +1,62 @@
+                      | # Final register values should be:
+                      | # %eax:		0x00000006
+                      | # %ecx:		0x00000001
+                      | # %edx:		0x00000001
+                      | # %ebx:		0x00000006
+                      | # %esp:		0x000001f8
+                      | # %ebp:		0x00000200
+                      | # %edi:		0x0000000b
+                      | 
+  0x000:              |  	.pos 0
+  0x000: 30f700000000 | irmovl $0, %edi
+  0x006: 30f400020000 | init:	 irmovl Stack, %esp
+  0x00c: 30f500020000 | 	 irmovl Stack, %ebp
+  0x012: 801d000000   | 	 call test_block
+                      | 
+  0x017: 30f101000000 | bad_block:	irmovl $1,%ecx
+                      | 
+  0x01d: 30f103000000 | test_block:	irmovl $3,%ecx
+                      | 
+  0x023: 6017         | addl %ecx, %edi
+                      | 
+  0x025: 30f400020000 | irmovl Stack,%esp
+  0x02b: 30f500020000 | irmovl Stack,%ebp
+  0x031: a05f         | pushl %ebp
+  0x033: 30f004000000 | irmovl $4,%eax
+  0x039: a00f         | pushl %eax
+  0x03b: b05f         | popl %ebp
+                      | 
+  0x03d: 6057         | addl %ebp, %edi
+                      | 
+  0x03f: 30f400020000 | irmovl Stack,%esp
+  0x045: 30f500020000 | irmovl Stack,%ebp
+  0x04b: a05f         | pushl %ebp
+  0x04d: 30f004000000 | irmovl $4,%eax
+  0x053: a00f         | pushl %eax
+                      | 
+  0x055: 6007         | addl %eax, %edi
+                      | 
+  0x057: 30f006000000 | irmovl $6,%eax
+  0x05d: 30f10f000000 | irmovl $15,%ecx
+  0x063: 400196000000 | rmmovl %eax,150(%ecx)
+  0x069: 502196000000 | mrmovl 150(%ecx),%edx
+  0x06f: 402100000000 | rmmovl %edx,(%ecx)
+  0x075: 503100000000 | mrmovl (%ecx),%ebx
+                      | 
+  0x07b: 808d000000   | 	 call test_block2
+  0x080: 30f201000000 | 	 irmovl $1,%edx
+                      | 
+  0x086: 30f101000000 | bad_block2:	irmovl $1,%ecx
+  0x08c: 00           | 	halt
+                      | 
+  0x08d: a05f         | test_block2:	pushl %ebp
+  0x08f: 2045         | 		rrmovl %esp,%ebp
+  0x091: 30f103000000 | 		irmovl $3,%ecx
+  0x097: 2054         | 		rrmovl %ebp,%esp
+  0x099: b05f         | 		popl %ebp
+  0x09b: 90           | 		ret
+                      | 
+                      | 
+  0x200:              | 	.pos 0x200
+  0x200:              | Stack:
+                      | 

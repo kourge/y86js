@@ -1,0 +1,10 @@
+# Y86 jmp unit test program
+# Final register values should be:
+# %eax:	0x00000004
+# %ecx: 0x00000003
+
+Start:	  irmovl $4,%eax
+	  jmp JmpPnt
+	  irmovl $2,%ecx
+
+JmpPnt:	  irmovl $3,%ecx

@@ -1,0 +1,26 @@
+# Y86 jle unit test program
+# Final register values should be:
+# %eax:	0x00000004
+# %edx:	0x00000007
+# %ebx:	0x00000001
+
+Start:	  irmovl $4,%eax
+	  irmovl $3,%ecx
+	  subl %ecx,%eax
+	  jle Jmp1
+	  irmovl $4,%eax
+	  irmovl $3,%ecx
+	  subl %eax,%ecx
+	  jle Jmp2
+
+Jmp1:	  irmovl $6,%edx
+
+Jmp2:	  irmovl $7,%edx
+	  irmovl $4,%eax
+	  irmovl $4,%ecx
+	  subl %eax,%ecx
+	  jle Jmp3
+	  irmovl $5,%ebx
+
+Jmp3:	  irmovl $1,%ebx
+

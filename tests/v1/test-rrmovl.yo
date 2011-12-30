@@ -1,0 +1,9 @@
+                      | # Y86 rrmovl unit test program
+                      | 
+                      | # Final register values should be:
+                      | # %eax 0x00000007
+                      | # %ecx 0x00000007
+                      | 
+  0x000:              | .pos 0
+  0x000: 30f007000000 | irmovl $7,%eax
+  0x006: 2001         | rrmovl %eax,%ecx

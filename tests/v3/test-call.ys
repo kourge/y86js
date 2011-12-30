@@ -1,0 +1,23 @@
+# Y86 call unit test program
+
+# Final register values should be:
+# %ecx:		0x00000003
+# %esp:		0x000000fc
+# %ebp:		0x00000100
+
+# Final memory state should be:
+# 0x00fc:       0x00000011
+
+	.pos 0
+	jmp Start
+	.pos 0x40
+Start:
+	irmovl Stack, %esp
+	irmovl Stack, %ebp
+	call test_block
+bad_block: irmovl $1,%ecx
+        halt
+test_block: irmovl $3,%ecx
+	halt
+	.pos 0x100
+Stack:

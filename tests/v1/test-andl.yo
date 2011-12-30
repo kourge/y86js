@@ -1,0 +1,7 @@
+                      | # Y86 andl unit test program
+                      | # Final condition codes should be:
+                      | # Z=1 S=0 O=0
+                      | 
+  0x000: 30f004000000 | irmovl $4,%eax
+  0x006: 30f100000000 | irmovl $0,%ecx
+  0x00c: 6201         | andl %eax,%ecx

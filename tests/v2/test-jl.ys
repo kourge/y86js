@@ -1,0 +1,23 @@
+# Y86 jl unit test program
+# Final register values should be:
+# %eax:	0xffffffff
+# %ecx: 0x00000004
+# %ebx:	0x0000000a
+
+Start:	 irmovl $3,%eax
+	 irmovl $2,%ecx
+	 subl %ecx,%eax
+	 jl Jmp1
+	 irmovl $3,%eax
+	 irmovl $3,%ecx
+	 subl %eax,%ecx
+	 jl Jmp1
+	 irmovl $3,%eax
+	 irmovl $4,%ecx
+	 subl %ecx,%eax
+	 jl Jmp2
+
+Jmp1:	 irmovl $5,%edx
+	 jmp Jmp2
+
+Jmp2:	 irmovl $10,%ebx

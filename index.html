@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>y86 Simulator</title>
+  <link rel="stylesheet" href="reset-min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="y86.js"></script>
+  <script src="prototype.js"></script>
+  <script src="y86-support.js"></script>
+  <script src="setup.js"></script>
+  <style>
+  </style>
+</head>
+
+<body>
+
+<div id="mem">
+  <textarea id="memload"></textarea><br />
+  <select id="format">
+    <option value="yo">.yo</option>
+    <option value="hex">.hex</option>
+    <option value="hextxt">.hex.txt</option>
+  </select>
+  <button id="load">Load</button>
+  <button id="reset">Reset</button>
+</div>
+
+<table id="instruction">
+<tbody><tr>
+  <td id="instr-cell">&nbsp;</td>
+  <td class="nibble">&nbsp;</td><td class="nibble sep">&nbsp;</td>
+  <td class="nibble">&nbsp;</td><td class="nibble">&nbsp;</td>
+  <td class="nibble">&nbsp;</td><td class="nibble">&nbsp;</td>
+  <td class="nibble">&nbsp;</td><td class="nibble">&nbsp;</td>
+  <td class="nibble">&nbsp;</td><td class="nibble">&nbsp;</td>
+  <td class="nibble">&nbsp;</td><td class="nibble">&nbsp;</td>
+</tr></tbody>
+</table>
+
+<button id="tick">Tick</button>
+
+<table id="registers">
+  <thead>
+  <tr>
+    <td>reg</td><td>val</td>
+  </tr>
+  </thead>
+  <tbody>
+    <tr><td>%eip</td><td id="eip" class="register"></td></tr>
+    <tr><td>%eax</td><td id="eax" class="register"></td></tr>
+    <tr><td>%ecx</td><td id="ecx" class="register"></td></tr>
+    <tr><td>%edx</td><td id="edx" class="register"></td></tr>
+    <tr><td>%ebx</td><td id="ebx" class="register"></td></tr>
+    <tr><td>%esp</td><td id="esp" class="register"></td></tr>
+    <tr><td>%ebp</td><td id="ebp" class="register"></td></tr>
+    <tr><td>%esi</td><td id="esi" class="register"></td></tr>
+    <tr><td>%edi</td><td id="edi" class="register"></td></tr>
+  </tbody>
+</table>
+
+<table id="flags">
+  <thead>
+  <tr>
+    <td>ZF</td>
+    <td>SF</td>
+    <td>OF</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td id="zf" class="flag"></td>
+    <td id="sf" class="flag"></td>
+    <td id="of" class="flag"></td>
+  </tr>
+  </tbody>
+</table>
+
+<div id="lights">
+  <div id="hex">0000</div>
+
+  <div class="red light-region">
+  <div class="light">7</div>
+  <div class="light">6</div>
+  <div class="light">5</div>
+  <div class="light">4</div>
+  <div class="light">3</div>
+  <div class="light">2</div>
+  <div class="light">1</div>
+  <div class="light">0</div>
+  </div>
+
+  <div class="green light-region">
+  <div class="light">7</div>
+  <div class="light">6</div>
+  <div class="light">5</div>
+  <div class="light">4</div>
+  <div class="light">3</div>
+  <div class="light">2</div>
+  <div class="light">1</div>
+  <div class="light">0</div>
+  </div>
+</div>
+
+</body>
+</html>

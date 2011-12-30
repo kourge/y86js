@@ -1,0 +1,21 @@
+                      | # Y86 pushl unit test program
+                      | # Final register values should be:
+                      | # %esp:	0x000000fc
+                      | # %ebp: 0x00000100
+                      | 
+                      | # Final memory values should be:
+                      | # 0x00fc:      0x00000100
+                      | # 0x00f8:      0x00000004
+                      | 
+  0x000:              |     .pos 0
+  0x000: 7040000000   |     jmp Start
+  0x040:              |     .pos 0x40
+  0x040:              | Start:
+  0x040: 30f400010000 |     irmovl Stack,%esp
+  0x046: 30f500010000 |     irmovl Stack,%ebp
+  0x04c: a05f         |     pushl %ebp
+  0x04e: 30f004000000 |     irmovl $4,%eax
+  0x054: a00f         |     pushl %eax
+  0x056: 00           |     halt
+  0x100:              |     .pos 0x100
+  0x100:              | Stack:

@@ -1,0 +1,12 @@
+# Y86 addl unit test program
+# Final register values should be:
+# %eax:	0x00000005
+# %ecx: 0x00000009
+# %edx: 0x00000006
+
+irmovl $5, %eax
+irmovl $4, %ecx
+addl %eax,%ecx
+irmovl $3, %edx
+addl %edx,%edx
+

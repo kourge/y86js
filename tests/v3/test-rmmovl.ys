@@ -1,0 +1,24 @@
+# Y86 rmmovl unit test program
+
+# Final values should be:
+# %eax:	        0x00000005
+# %ecx:		0x00000040
+# %edx:		0x00000044
+# 0x0010:	0x00000044
+# 0x0014:	0x00000005
+
+    .pos 0
+    jmp Start
+    .pos 0x40
+Start:
+    irmovl A,%ecx
+    irmovl B,%edx
+    irmovl $5,%eax
+    rmmovl %ecx,(%edx)
+    rmmovl %eax,(%ecx)
+    rmmovl %eax,-2(%ecx)
+    halt
+    .pos 0x40
+A:
+    .pos 0x44
+B:

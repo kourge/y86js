@@ -1,0 +1,19 @@
+# Y86 cmove unit test program
+# Final register values should be:
+# %eax: 0x00000004
+# %ecx: 0xffffffff
+# %edx: 0x00000004
+
+irmovl $4,%eax
+irmovl $5,%ecx
+subl %eax,%ecx
+cmove %ecx,%edx
+irmovl $4,%eax
+irmovl $4,%ecx
+subl %eax,%ecx
+cmove %eax,%edx
+irmovl $4,%eax
+irmovl $3,%ecx
+subl %eax,%ecx
+cmove %ecx,%ebx
+halt

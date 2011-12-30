@@ -1,0 +1,24 @@
+                      | # Y86 jg unit test program
+                      | # Final register values should be:
+                      | # %eax:	0x00000004
+                      | # %ecx:	0x00000001
+                      | # %edx:	0x00000001
+                      | # %ebx:	0x00000002
+                      | 
+  0x000: 30f004000000 | Start:	  irmovl $4,%eax
+  0x006: 30f103000000 | 	  irmovl $3,%ecx
+  0x00c: 6101         | 	  subl %eax,%ecx
+  0x00e: 7644000000   | 	  jg Jmp2
+  0x013: 30f004000000 | 	  irmovl $4,%eax
+  0x019: 30f104000000 | 	  irmovl $4,%ecx
+  0x01f: 6101         | 	  subl %eax,%ecx
+  0x021: 7644000000   | 	  jg Jmp2
+  0x026: 30f004000000 | 	  irmovl $4,%eax
+  0x02c: 30f105000000 | 	  irmovl $5,%ecx
+  0x032: 6101         | 	  subl %eax,%ecx
+  0x034: 7639000000   | 	  jg Jmp1
+                      | 
+  0x039: 30f201000000 | Jmp1:	  irmovl $1,%edx
+  0x03f: 7044000000   | 	  jmp Jmp2
+                      | 
+  0x044: 30f302000000 | Jmp2:	  irmovl $2,%ebx

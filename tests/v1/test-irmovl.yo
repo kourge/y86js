@@ -1,0 +1,11 @@
+                      | # Y86 irmovl unit test program
+                      | 
+                      | # Final values should be:
+                      | # %eax 0x00000008
+                      | # %ecx 0x00000010
+                      | 
+  0x000:              | .pos 0
+                      | 
+  0x000: 30f004000000 | irmovl $4,%eax
+  0x006: 30f110000000 | irmovl $16,%ecx
+  0x00c: 30f008000000 | irmovl $8,%eax

@@ -1,0 +1,280 @@
+                      | # Y86 cmov and jump test
+                      | # Final register values should be:
+                      | # %eax: 0x00000004
+                      | # %ecx: 0x00000007
+                      | # %edx: 0x0000000c
+                      | # %ebx: 0x00000001
+                      | # %esi: 0x00000065
+                      | 
+  0x000: 30f004000000 | irmovl $4,%eax
+  0x006: 30f105000000 | irmovl $5,%ecx
+  0x00c: 6101         | subl %eax,%ecx
+  0x00e: 2612         | cmovg %ecx,%edx
+  0x010: 30f004000000 | irmovl $4,%eax
+  0x016: 30f104000000 | irmovl $4,%ecx
+  0x01c: 6101         | subl %eax,%ecx
+  0x01e: 2603         | cmovg %eax,%ebx
+  0x020: 30f004000000 | irmovl $4,%eax
+  0x026: 30f103000000 | irmovl $3,%ecx
+  0x02c: 6101         | subl %eax,%ecx
+  0x02e: 2613         | cmovg %ecx,%ebx
+                      | # %eax: 0x00000004
+                      | # %ecx: 0xffffffff
+                      | # %edx: 0x00000001
+                      | 
+  0x030: 6002         | addl %eax,%edx
+  0x032: 6021         | addl %edx,%ecx
+  0x034: 2016         | rrmovl %ecx, %esi
+                      | # %esi: 0x00000004
+                      | 
+  0x036: 30f004000000 | irmovl $4,%eax
+  0x03c: 30f105000000 | irmovl $5,%ecx
+  0x042: 6101         | subl %eax,%ecx
+  0x044: 2312         | cmove %ecx,%edx
+  0x046: 30f004000000 | irmovl $4,%eax
+  0x04c: 30f104000000 | irmovl $4,%ecx
+  0x052: 6101         | subl %eax,%ecx
+  0x054: 2302         | cmove %eax,%edx
+  0x056: 30f004000000 | irmovl $4,%eax
+  0x05c: 30f103000000 | irmovl $3,%ecx
+  0x062: 6101         | subl %eax,%ecx
+  0x064: 2313         | cmove %ecx,%ebx
+                      | # %eax: 0x00000004
+                      | # %ecx: 0xffffffff
+                      | # %edx: 0x00000004
+                      | 
+  0x066: 6002         | addl %eax,%edx
+  0x068: 6021         | addl %edx,%ecx
+  0x06a: 6016         | addl %ecx, %esi
+                      | # %esi: 0x0000000b
+                      | 
+  0x06c: 30f004000000 | irmovl $4,%eax
+  0x072: 30f105000000 | irmovl $5,%ecx
+  0x078: 6101         | subl %eax,%ecx
+  0x07a: 2512         | cmovge %ecx,%edx
+  0x07c: 30f004000000 | irmovl $4,%eax
+  0x082: 30f104000000 | irmovl $4,%ecx
+  0x088: 6101         | subl %eax,%ecx
+  0x08a: 2503         | cmovge %eax,%ebx
+  0x08c: 30f004000000 | irmovl $4,%eax
+  0x092: 30f103000000 | irmovl $3,%ecx
+  0x098: 6101         | subl %eax,%ecx
+  0x09a: 2513         | cmovge %ecx,%ebx
+                      | # %eax: 0x00000004
+                      | # %ecx: 0xffffffff
+                      | # %edx: 0x00000001
+                      | # %ebx: 0x00000004
+                      | 
+  0x09c: 6002         | addl %eax,%edx
+  0x09e: 6021         | addl %edx,%ecx
+  0x0a0: 6031         | addl %ebx,%ecx
+  0x0a2: 6016         | addl %ecx, %esi
+                      | # %esi: 0x00000013
+                      | 
+  0x0a4: 30f004000000 | irmovl $4,%eax
+  0x0aa: 30f105000000 | irmovl $5,%ecx
+  0x0b0: 6101         | subl %eax,%ecx
+  0x0b2: 2212         | cmovl %ecx,%edx
+  0x0b4: 30f004000000 | irmovl $4,%eax
+  0x0ba: 30f104000000 | irmovl $4,%ecx
+  0x0c0: 6101         | subl %eax,%ecx
+  0x0c2: 2202         | cmovl %eax,%edx
+  0x0c4: 30f004000000 | irmovl $4,%eax
+  0x0ca: 30f103000000 | irmovl $3,%ecx
+  0x0d0: 6101         | subl %eax,%ecx
+  0x0d2: 2213         | cmovl %ecx,%ebx
+                      | # %eax: 0x00000004
+                      | # %ecx: 0xffffffff
+                      | # %ebx: 0xffffffff
+                      | 
+  0x0d4: 6001         | addl %eax,%ecx
+  0x0d6: 6031         | addl %ebx,%ecx
+  0x0d8: 6016         | addl %ecx, %esi
+                      | # %esi: 0x00000015
+                      | 
+  0x0da: 30f004000000 | irmovl $4,%eax
+  0x0e0: 30f105000000 | irmovl $5,%ecx
+  0x0e6: 6101         | subl %eax,%ecx
+  0x0e8: 2112         | cmovle %ecx,%edx
+  0x0ea: 30f004000000 | irmovl $4,%eax
+  0x0f0: 30f104000000 | irmovl $4,%ecx
+  0x0f6: 6101         | subl %eax,%ecx
+  0x0f8: 2102         | cmovle %eax,%edx
+  0x0fa: 30f004000000 | irmovl $4,%eax
+  0x100: 30f103000000 | irmovl $3,%ecx
+  0x106: 6101         | subl %eax,%ecx
+  0x108: 2113         | cmovle %ecx,%ebx
+                      | # %eax: 0x00000004
+                      | # %ecx: 0xffffffff
+                      | # %edx: 0x00000004
+                      | # %ebx: 0xffffffff
+                      | 
+  0x10a: 6002         | addl %eax,%edx
+  0x10c: 6021         | addl %edx,%ecx
+  0x10e: 6031         | addl %ebx,%ecx
+  0x110: 6016         | addl %ecx, %esi
+                      | # %esi: 0x0000001b
+                      | 
+  0x112: 30f004000000 | irmovl $4,%eax
+  0x118: 30f105000000 | irmovl $5,%ecx
+  0x11e: 6101         | subl %eax,%ecx
+  0x120: 2412         | cmovne %ecx,%edx
+  0x122: 30f004000000 | irmovl $4,%eax
+  0x128: 30f104000000 | irmovl $4,%ecx
+  0x12e: 6101         | subl %eax,%ecx
+  0x130: 2402         | cmovne %eax,%edx
+  0x132: 30f004000000 | irmovl $4,%eax
+  0x138: 30f103000000 | irmovl $3,%ecx
+  0x13e: 6101         | subl %eax,%ecx
+  0x140: 2413         | cmovne %ecx,%ebx
+                      | # %eax: 0x00000004
+                      | # %ecx: 0xffffffff
+                      | # %edx: 0x00000001
+                      | # %ebx: 0xffffffff
+                      | 
+  0x142: 6002         | addl %eax,%edx
+  0x144: 6021         | addl %edx,%ecx
+  0x146: 6031         | addl %ebx,%ecx
+  0x148: 6016         | addl %ecx, %esi
+                      | # %esi: 0x0000001e
+                      | 
+  0x14a: 30f003000000 | Start0:	 irmovl $3,%eax
+  0x150: 30f103000000 | 	 irmovl $3,%ecx
+  0x156: 6110         | 	 subl %ecx,%eax
+  0x158: 7370010000   | 	 je Jmp10
+  0x15d: 30f003000000 | 	 irmovl $3,%eax
+  0x163: 30f102000000 | 	 irmovl $2,%ecx
+  0x169: 6101         | 	 subl %eax,%ecx
+  0x16b: 737b010000   | 	 je Jmp20
+                      | 
+  0x170: 30f205000000 | Jmp10:	 irmovl $5,%edx
+  0x176: 707b010000   | 	 jmp Jmp20
+                      | 
+  0x17b: 30f30a000000 | Jmp20:	 irmovl $10,%ebx
+                      | # %ecx:	0x00000003
+                      | # %edx:	0x00000005
+                      | # %ebx:	0x0000000a
+                      | 
+  0x181: 6021         | addl %edx,%ecx
+  0x183: 6031         | addl %ebx,%ecx
+  0x185: 6016         | addl %ecx, %esi
+                      | # %esi: 0x00000030
+                      | 
+  0x187: 30f003000000 | Start1:	 irmovl $3,%eax
+  0x18d: 30f102000000 | 	 irmovl $2,%ecx
+  0x193: 6110         | 	 subl %ecx,%eax
+  0x195: 73c0010000   | 	 je Jmp11
+  0x19a: 30f003000000 | 	 irmovl $3,%eax
+  0x1a0: 30f103000000 | 	 irmovl $3,%ecx
+  0x1a6: 6101         | 	 subl %eax,%ecx
+  0x1a8: 73cb010000   | 	 je Jmp21
+  0x1ad: 30f003000000 | 	 irmovl $3,%eax
+  0x1b3: 30f104000000 | 	 irmovl $4,%ecx
+  0x1b9: 6110         | 	 subl %ecx,%eax
+  0x1bb: 73c0010000   | 	 je Jmp11
+                      | 
+  0x1c0: 30f205000000 | Jmp11:	 irmovl $5,%edx
+  0x1c6: 70cb010000   | 	 jmp Jmp21
+                      | 
+  0x1cb: 30f30a000000 | Jmp21:	 irmovl $10,%ebx
+                      | # %eax:	0x00000003
+                      | # %ebx:	0x0000000a
+                      | 
+  0x1d1: 6030         | addl %ebx,%eax
+  0x1d3: 6006         | addl %eax, %esi
+                      | # %esi: 0x0000003d
+                      | 
+  0x1d5: 30f004000000 | Start2:	  irmovl $4,%eax
+  0x1db: 30f103000000 | 	  irmovl $3,%ecx
+  0x1e1: 6101         | 	  subl %eax,%ecx
+  0x1e3: 7514020000   | 	  jge Jmp22
+  0x1e8: 30f004000000 | 	  irmovl $4,%eax
+  0x1ee: 30f104000000 | 	  irmovl $4,%ecx
+  0x1f4: 6101         | 	  subl %eax,%ecx
+  0x1f6: 75fb010000   | 	  jge Jmp12
+                      | 
+  0x1fb: 30f201000000 | Jmp12:	  irmovl $1,%edx
+  0x201: 30f004000000 | 	  irmovl $4,%eax
+  0x207: 30f105000000 | 	  irmovl $5,%ecx
+  0x20d: 6101         | 	  subl %eax,%ecx
+  0x20f: 7514020000   | 	  jge Jmp22
+                      | 
+  0x214: 30f302000000 | Jmp22:	  irmovl $2,%ebx
+                      | # %eax:	0x00000004
+                      | # %ecx:	0x00000001
+                      | # %edx:	0x00000001
+                      | # %ebx:	0x00000002
+                      | 
+  0x21a: 6002         | addl %eax,%edx
+  0x21c: 6021         | addl %edx,%ecx
+  0x21e: 6031         | addl %ebx,%ecx
+  0x220: 6016         | addl %ecx, %esi
+                      | # %esi: 0x00000045
+                      | 
+  0x222: 30f003000000 | Start3:	 irmovl $3,%eax
+  0x228: 30f102000000 | 	 irmovl $2,%ecx
+  0x22e: 6110         | 	 subl %ecx,%eax
+  0x230: 725b020000   | 	 jl Jmp13
+  0x235: 30f003000000 | 	 irmovl $3,%eax
+  0x23b: 30f103000000 | 	 irmovl $3,%ecx
+  0x241: 6101         | 	 subl %eax,%ecx
+  0x243: 725b020000   | 	 jl Jmp13
+  0x248: 30f003000000 | 	 irmovl $3,%eax
+  0x24e: 30f104000000 | 	 irmovl $4,%ecx
+  0x254: 6110         | 	 subl %ecx,%eax
+  0x256: 7266020000   | 	 jl Jmp23
+                      | 
+  0x25b: 30f205000000 | Jmp13:	 irmovl $5,%edx
+  0x261: 7066020000   | 	 jmp Jmp23
+                      | 
+  0x266: 30f30a000000 | Jmp23:	 irmovl $10,%ebx
+                      | # %eax:	0xffffffff
+                      | # %ecx: 0x00000004
+                      | # %ebx:	0x0000000a
+                      | 
+  0x26c: 6001         | addl %eax,%ecx
+  0x26e: 6031         | addl %ebx,%ecx
+  0x270: 6016         | addl %ecx, %esi
+                      | # %esi: 0x00000052
+                      | 
+  0x272: 30f004000000 | Start4:	  irmovl $4,%eax
+  0x278: 30f103000000 | 	  irmovl $3,%ecx
+  0x27e: 6110         | 	  subl %ecx,%eax
+  0x280: 7198020000   | 	  jle Jmp14
+  0x285: 30f004000000 | 	  irmovl $4,%eax
+  0x28b: 30f103000000 | 	  irmovl $3,%ecx
+  0x291: 6101         | 	  subl %eax,%ecx
+  0x293: 719e020000   | 	  jle Jmp24
+                      | 
+  0x298: 30f206000000 | Jmp14:	  irmovl $6,%edx
+                      | 
+  0x29e: 30f207000000 | Jmp24:	  irmovl $7,%edx
+  0x2a4: 30f004000000 | 	  irmovl $4,%eax
+  0x2aa: 30f104000000 | 	  irmovl $4,%ecx
+  0x2b0: 6101         | 	  subl %eax,%ecx
+  0x2b2: 71bd020000   | 	  jle Jmp34
+  0x2b7: 30f305000000 | 	  irmovl $5,%ebx
+                      | 
+  0x2bd: 30f301000000 | Jmp34:	  irmovl $1,%ebx
+                      | # %eax:	0x00000004
+                      | # %edx:	0x00000007
+                      | # %ebx:	0x00000001
+                      | 
+  0x2c3: 6002         | addl %eax,%edx
+  0x2c5: 6032         | addl %ebx,%edx
+  0x2c7: 6026         | addl %edx, %esi
+                      | # %esi: 0x0000005e
+                      | 
+  0x2c9: 30f004000000 | Start5:	  irmovl $4,%eax
+  0x2cf: 70da020000   | 	  jmp JmpPnt
+  0x2d4: 30f102000000 | 	  irmovl $2,%ecx
+                      | 
+  0x2da: 30f103000000 | JmpPnt:	  irmovl $3,%ecx
+                      | # %eax:	0x00000004
+                      | # %ecx: 0x00000003
+                      | 
+  0x2e0: 6001         | addl %eax,%ecx
+  0x2e2: 6016         | addl %ecx, %esi
+                      | # %esi: 0x00000065
+                      | 
+  0x2e4: 00           | halt

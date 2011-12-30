@@ -1,0 +1,7 @@
+                      | # Y86 xorl unit test program
+                      | # Final condition codes should be:
+                      | # Z=1 S=0 O=0
+                      | 
+  0x000: 30f003000000 | irmovl $3,%eax
+  0x006: 30f103000000 | irmovl $3,%ecx
+  0x00c: 6301         | xorl %eax,%ecx

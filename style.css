@@ -1,0 +1,96 @@
+
+body {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Myriad Pro", Helvetica, sans-serif;
+  font-size: 12px;
+  margin: 1em;
+}
+
+table {
+  margin-bottom: 1em;
+}
+
+td {
+  border: 1px solid black;
+}
+
+#mem {
+  float: right;
+}
+#memload {
+  width: 40em;
+  height: 30em;
+}
+#load {
+}
+
+#instruction td {
+}
+
+#instr-cell {
+  padding: 0.5em;
+  width: 18em;
+}
+td.nibble {
+  width: 2.5em;
+  text-align: center;
+}
+td.hidden {
+  visibility: hidden;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+}
+td.sep {
+  border-right-width: 3px;
+}
+
+#registers td {
+  width: 7em;
+  text-align: center;
+}
+#flags td {
+  width: 2em;
+  text-align: center;
+}
+
+#memload, #instr-cell, #registers td, #flags td, td.nibble {
+  font-family: "Monaco", "Consolas", monospace;
+}
+
+.written {
+  background-color: #cf6;
+}
+
+#hex {
+  display: inline-block;
+  padding: 0.1em 0 0.1em 0.25em;
+  font-size: 200%;
+  font-family: "Monaco", "Consolas", monospace;
+  letter-spacing: 0.3em;
+  background-color: #800000;
+  color: red;
+}
+
+.light-region {
+  display: inline-block;
+}
+
+.light {
+  display: inline-block;
+  font-family: "Monaco", "Consolas", monospace;
+  text-align: center;
+  padding-top: 0.2em;
+  width: 1em;
+  height: 1.5em;
+  border-radius: 0.25em;
+  border: 1px solid black;
+  margin-left: 0.25em;
+  color: white;
+}
+
+.red .light { background-color: #370000; }
+.red .light.on { background-color: red; }
+
+.green .light { background-color: #123c00; }
+.green .light.on { background-color: #5eb700; }
+
